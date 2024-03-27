@@ -2,26 +2,22 @@ version: '3.8'
 
 services:
   frontend:
-    image: fronts
+    image: angular
     container_name: angular
     ports:
       - "4200:80"
+    networks:
+      - my_network
 
   backend:
-    image: b2
+    image: z
     container_name: backend
     ports:
       - "8080:8080"
-    environment:
-      - spring.datasource.url=jdbc:mysql://mysql:3306/employeemanager?allowPublicKeyRetrieval=true
-
-      #      MYSQL_HOST: mysqlcontainer
-#      MYSQL_PORT: 3306
-#      MYSQL_DB_NAME: employeemanager
-#      MYSQL_USER: root
-#      MYSQL_PASSWORD:
     depends_on:
       - mysql
+    networks:
+      - my_network
 
   mysql:
     image: mysql:latest
@@ -29,15 +25,11 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: "Aziz2022@"
       MYSQL_DATABASE: employeemanager
-#      MYSQL_USER: root
-#      MYSQL_PASSWORD:
+    networks:
+      - my_network
 
-#networks:
-#  default:
-#    name: networkmysql
-#    external: true
-
-
-
+networks:
+  my_network:
+    driver: bridge
