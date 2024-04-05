@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    image: angular-image
+    image: azizbk9/angular-image:latest
     container_name: angular
     ports:
       - "4200:80"
@@ -10,7 +10,7 @@ services:
       - my_network
 
   backend:
-    image: spring-image
+    image: azizbk9/spring-image:latest
     container_name: backend
     ports:
       - "8080:8080"
