@@ -10,7 +10,7 @@ services:
       - my_network
 
   backend:
-    image: z
+    image: spring
     container_name: backend
     ports:
       - "8080:8080"
