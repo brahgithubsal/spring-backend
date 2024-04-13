@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: spring-boot-deployment
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: spring-boot
@@ -14,12 +14,12 @@ spec:
     spec:
       containers:
         - name: spring-boot
-          image: azizbk9/spring:tagname
+          image: azizbk9/spring-image:latest
           ports:
             - containerPort: 8080
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:mysql://mysql-service:3306/employees?useSSL=false"
+              value: "jdbc:mysql://mysql:3306/employeemanager?allowPublicKeyRetrieval=true&serverTimezone=UTC"
             - name: SPRING_DATASOURCE_USERNAME
               value: "root"
             - name: SPRING_DATASOURCE_PASSWORD
